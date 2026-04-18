@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google.com https://*.googleapis.com https://*.gstatic.com; script-src 'self'; frame-src https://www.google.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self';">
   <meta name="description" content="Contact Adhira Medika Strategic Venture — get in touch for product inquiries, demonstrations, and clinical support.">
   <title>Contact — Adhira Medika Strategic Venture</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,16 +78,16 @@
     .form-submit:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
     .form-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
-    /* ── Map placeholder ── */
-    .map-placeholder {
+    /* ── Map embed ── */
+    .map-embed {
       margin-top: var(--s-16); border-radius: var(--r-xl);
       overflow: hidden; border: 1px solid var(--gray-200);
-      background: var(--gray-100); height: 240px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: var(--s-2);
-      color: var(--gray-400); font-size: 0.875rem;
+      height: 300px; position: relative;
+      box-shadow: var(--sh-md);
     }
-    .map-placeholder-icon { font-size: 2rem; }
+    .map-embed iframe {
+      width: 100%; height: 100%; border: 0; display: block;
+    }
   </style>
 </head>
 <body>
@@ -165,10 +165,14 @@
                 <div class="office-addr">Ruko Paramount Spark Blok B No.22, Gading Serpong, Tangerang - Banten</div>
               </div>
             </div>
-            <div class="map-placeholder" aria-label="Office location map placeholder">
-              <div class="map-placeholder-icon">🗺️</div>
-              <span>Gading Serpong, Tangerang</span>
-              <span style="font-size:0.775rem;">Paramount Spark Complex</span>
+            <div class="map-embed" aria-label="Ruko Paramount Spark, Gading Serpong location on Google Maps">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0217135568894!2d106.61946637499236!3d-6.240167360656703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fca9a4b2ef67%3A0x9e6d9fdff73e2cf3!2sParamount%20Spark!5e0!3m2!1sen!2sid!4v1713500000000!5m2!1sen!2sid"
+                width="100%" height="300" style="border:0;"
+                allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ruko Paramount Spark Blok B, Gading Serpong, Tangerang">
+              </iframe>
             </div>
           </div>
 
