@@ -1,5 +1,5 @@
 (function(){
-  // Main accordions — only one open at a time
+  // Main accordions � only one open at a time
   var headers = document.querySelectorAll('.accordion-header');
   headers.forEach(function(header){
     header.addEventListener('click', function(){
@@ -22,7 +22,7 @@
     });
   });
 
-  // Sub-accordions — one open per parent group
+  // Sub-accordions � one open per parent group
   var subHeaders = document.querySelectorAll('.sub-accordion-header');
   subHeaders.forEach(function(sh){
     sh.addEventListener('click', function(){
