@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self';">
+  <meta name="description" content="ACM orthopaedic implant product portfolio — Spine, Trauma, Arthroplasty solutions for Indonesia's surgeons.">
+  <title>Products — Adhira Medika Strategic Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    /* ── Accordion ── */
+    .accordion { margin-bottom: var(--s-4); border: 1px solid var(--gray-200); border-radius: var(--r-xl); overflow: hidden; }
+    .accordion-header {
+      background: #fff; color: var(--gray-900);
+      padding: 20px 24px; font-size: 1rem; font-weight: 700;
+      font-family: var(--font); cursor: pointer; border: none; width: 100%;
+      text-align: left; display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s-3); transition: background var(--t-fast);
+      touch-action: manipulation; letter-spacing: -0.01em;
+    }
+    .accordion-header:hover { background: var(--gray-50); }
+    .accordion-header.active { background: var(--gray-50); }
+    .accordion-header:focus-visible { outline: 3px solid var(--primary); outline-offset: -2px; }
+    .accordion-header-left { display: flex; align-items: center; gap: var(--s-3); }
+    .acc-icon { font-size: 1.2rem; }
+    .tkdn-badge {
+      font-size: 0.68rem; font-weight: 800; background: #fff;
+      color: #16a34a; border: 1.5px solid #86efac; border-radius: 4px;
+      padding: 2px 8px; letter-spacing: 0.04em; white-space: nowrap;
+    }
+    .accordion-header.active .tkdn-badge { background: rgba(255,255,255,.9); }
+    .chevron { font-size: 1rem; transition: transform 0.22s; color: var(--gray-400); flex-shrink: 0; }
+    .accordion-header.active .chevron { transform: rotate(180deg); }
+    .accordion-content { display: none; border-top: 1px solid var(--gray-200); background: var(--gray-50); padding: var(--s-6); }
+    .accordion-content.open { display: block; }
+
+    /* future products accordion — slate style */
+    .accordion.future .accordion-header { background: var(--gray-900); color: #fff; }
+    .accordion.future .accordion-header:hover { background: #1e293b; }
+    .accordion.future .chevron { color: rgba(255,255,255,.5); }
+
+    /* ── Sub Accordion ── */
+    .sub-accordion { margin-bottom: var(--s-3); border: 1px solid var(--gray-200); border-radius: var(--r-lg); overflow: hidden; background: #fff; }
+    .sub-accordion-header {
+      background: #fff; color: var(--gray-900);
+      padding: 14px 18px; font-size: 0.9rem; font-weight: 600;
+      font-family: var(--font); cursor: pointer; border: none; width: 100%;
+      text-align: left; display: flex; align-items: center; justify-content: space-between;
+      transition: background var(--t-fast); touch-action: manipulation;
+    }
+    .sub-accordion-header:hover, .sub-accordion-header.active { background: rgba(0,102,255,.05); color: var(--primary); }
+    .sub-accordion-header:focus-visible { outline: 3px solid var(--primary); outline-offset: -2px; }
+    .sub-chevron { font-size: 0.75rem; color: var(--gray-400); transition: transform 0.2s; }
+    .sub-accordion-header.active .sub-chevron { transform: rotate(180deg); color: var(--primary); }
+    .sub-accordion-content { display: none; padding: var(--s-5); border-top: 1px solid var(--gray-100); }
+    .sub-accordion-content.open { display: block; }
+
+    /* ── Product Grid ── */
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: var(--s-4); }
+    .product-card {
+      background: #fff; border: 1px solid var(--gray-200); border-radius: var(--r-lg);
+      padding: var(--s-4); display: flex; flex-direction: column; align-items: center;
+      text-align: center; transition: box-shadow var(--t-base), transform var(--t-base), border-color var(--t-base);
+    }
+    @media (hover:hover) { .product-card:hover { box-shadow: var(--sh-md); transform: translateY(-2px); border-color: var(--primary); } }
+    .product-img-wrap { width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; background: var(--gray-50); border-radius: var(--r-md); margin-bottom: var(--s-3); overflow: hidden; }
+    .product-img-wrap img { max-width: 120px; max-height: 120px; object-fit: contain; }
+    .product-title { font-size: 0.78rem; font-weight: 600; color: var(--gray-800, #1e293b); line-height: 1.4; }
+    .patent-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; color: #b45309; background: #fef3c7; border-radius: var(--r-full); padding: 1px 8px; margin-top: 4px; }
+
+    /* ── Product placeholder (SVG) ── */
+    .product-img-placeholder { width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; background: var(--gray-50); border-radius: var(--r-md); margin-bottom: var(--s-3); }
+
+    /* ── Error message ── */
+    #error-message:not(:empty) { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 10px 16px; border-radius: var(--r-md); margin-bottom: var(--s-4); font-size: 0.875rem; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+      .accordion-header { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Nav -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Adhira Medika home">
+        <img src="../ACM/company Logo/Adhira Medika Strategic Logo.png" alt="Adhira Medika Strategic Logo">
+        <div>
+          <span class="nav-logo-name">Adhira Medika</span>
+          <span class="nav-logo-sub">Strategic Venture</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <nav class="main-nav" id="nav-menu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html" class="active" aria-current="page">Products</a></li>
+          <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-hero-badge">TKDN Certified · Patent-Holding Products</div>
+        <h1>Our Product Portfolio</h1>
+        <p>Comprehensive orthopaedic implants and instruments — Spine, Trauma &amp; Joint Reconstruction solutions for every clinical need.</p>
+      </div>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <section class="section">
+      <div class="container">
+        <div id="error-message" role="alert"></div>
+
+        <!-- ── Spine Product ── -->
+        <div class="accordion" id="acc-spine-wrap">
+          <button class="accordion-header" aria-expanded="false" aria-controls="acc-spine">
+            <span class="accordion-header-left">
+              <span class="acc-icon">🦴</span>
+              Spine Product
+              <span class="tkdn-badge">TKDN</span>
+            </span>
+            <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="accordion-content" id="acc-spine">
+
+            <!-- Posterior Approach -->
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-posterior">
+                Posterior Approach <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-posterior">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Posterior Approach Cervical Venus.png" alt="Posterior Approach Cervical Venus" loading="lazy"></div><div class="product-title">Posterior Approach Cervical Venus</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Posterior Approach Cervical Venus Lateral Mass.png" alt="Posterior Approach Cervical Venus Lateral Mass" loading="lazy"></div><div class="product-title">Posterior Approach Cervical Venus Lateral Mass</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Posterior Approach Cervical Venus Lateral Mass Occipital Plate.jpg" alt="Posterior Approach Cervical Venus Lateral Mass Occipital Plate" loading="lazy"></div><div class="product-title">Posterior Approach Cervical Venus Lateral Mass Occipital Plate</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Posterior Approach Cervical Venus Lateral Mass Occipital Plate Dual Rod.png" alt="Posterior Approach Cervical Venus Lateral Mass Occipital Plate Dual Rod" loading="lazy"></div><div class="product-title">Posterior Approach Cervical Venus Lateral Mass Occipital Plate Dual Rod</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Thoraco-Lumbar Pedicle Screw (Z6).png" alt="Thoraco-Lumbar Pedicle Screw (Z6)" loading="lazy"></div><div class="product-title">Posterior Approach Thoraco-Lumbar Pedicle Screw (Z6)</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Thoraco-Lumbar Pedicle Screw Cannulated Screw .png" alt="Thoraco-Lumbar Pedicle Screw Cannulated Screw" loading="lazy"></div><div class="product-title">Thoraco-Lumbar Pedicle Screw (Z6) Cannulated Screw <span class="patent-badge">Patent Holder</span></div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Thoraco-Lumbar Pedicle Screw Cannulated Screw Neptune Cage.png" alt="Thoraco-Lumbar Pedicle Screw Cannulated Screw Neptune Cage" loading="lazy"></div><div class="product-title">Thoraco-Lumbar Pedicle Screw (Z6) Cannulated Screw Neptune Cage</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Thoraco-Lumbar Pedicle Screw Cannulated Screw Neptune Cage Pango Expandable Cage.png" alt="Pango Expandable Cage" loading="lazy"></div><div class="product-title">Thoraco-Lumbar Pedicle Screw Cannulated Screw Neptune Cage Pango Expandable Cage <span class="patent-badge">Patent Holder</span></div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Scoliosis System RP Scoliosis.png" alt="Scoliosis System RP Scoliosis" loading="lazy"></div><div class="product-title">Posterior Approach Scoliosis System RP Scoliosis <span class="patent-badge">Patent Holder</span></div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Minimal Invasive MIS Hard Extension.jpg" alt="Minimal Invasive MIS Hard Extension" loading="lazy"></div><div class="product-title">Minimal Invasive MIS Hard Extension <span class="patent-badge">Patent Holder</span></div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Minimal Invasive MIS Hard Extension Kyphoplasty.png" alt="MIS Hard Extension Kyphoplasty" loading="lazy"></div><div class="product-title">MIS Hard Extension Kyphoplasty</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Minimal Invasive MIS Hard Extension Bone cement.jpg" alt="MIS Hard Extension Kyphoplasty Bone Cement" loading="lazy"></div><div class="product-title">MIS Hard Extension Kyphoplasty Bone Cement</div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Anterior Approach -->
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-anterior">
+                Anterior Approach <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-anterior">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Anterior Approach Mercury and Hercules.png" alt="Anterior Approach Mercury & Hercules" loading="lazy"></div><div class="product-title">Anterior Approach Mercury &amp; Hercules</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Cervical Expandable Cage.png" alt="Cervical Expandable Cage" loading="lazy"></div><div class="product-title">Mercury &amp; Hercules Cervical Expandable Cage <span class="patent-badge">Patent Holder</span></div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Cervical Expandable Cage Arrow.jpg" alt="Cervical Expandable Cage Arrow" loading="lazy"></div><div class="product-title">Cervical Expandable Cage Arrow <span class="patent-badge">Patent Holder</span></div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Cervical Expandable Cage Arrow Uranus.jpg" alt="Cervical Expandable Cage Arrow Uranus" loading="lazy"></div><div class="product-title">Cervical Expandable Cage Arrow Uranus</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Cervical Expandable Cage Arrow Uranus Zero-X.png" alt="Cervical Expandable Cage Arrow Uranus Zero-X" loading="lazy"></div><div class="product-title">Cervical Expandable Cage Arrow Uranus Zero-X</div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Set Basic -->
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-setbasic">
+                Set Basic <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-setbasic">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Spine Product/Set  Basic Spine Instrument SET.png" alt="Set Basic Spine Instrument Set" loading="lazy"></div><div class="product-title">Set Basic Spine Instrument Set <span class="patent-badge">Patent Holder</span></div></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── Trauma Product ── -->
+        <div class="accordion" id="acc-trauma-wrap">
+          <button class="accordion-header" aria-expanded="false" aria-controls="acc-trauma">
+            <span class="accordion-header-left">
+              <span class="acc-icon">🔩</span>
+              Trauma Product
+              <span class="tkdn-badge">TKDN</span>
+            </span>
+            <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="accordion-content" id="acc-trauma">
+
+            <!-- Instrument Sets -->
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-instru">
+                Instrument Sets <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-instru">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Trauma Producs/SMALL FRAGMENT INSTRUMENT SET.png" alt="Small Fragment Instrument Set" loading="lazy"></div><div class="product-title">Small Fragment Instrument Set <span class="patent-badge">Patent Holder</span></div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Trauma Producs/LARGE FRAGMENT INSTRUMENT SET.png" alt="Large Fragment Instrument Set" loading="lazy"></div><div class="product-title">Large Fragment Instrument Set <span class="patent-badge">Patent Holder</span></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Plate Systems -->
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-plate">
+                Plate Systems <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-plate">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Trauma Producs/PLATE SYSTEM.png" alt="Plate System" loading="lazy"></div><div class="product-title">Plate System</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Trauma Producs/PLATE SYSTEM Distal Radius Instrument Set.png" alt="Plate System Distal Radius Instrument Set" loading="lazy"></div><div class="product-title">Plate System Distal Radius Instrument Set</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Trauma Producs/PLATE SYSTEM Plate S-Clavicula.png" alt="Plate System Plate S-Clavicula" loading="lazy"></div><div class="product-title">Plate System Plate S-Clavicula</div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Screw Systems -->
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-screw">
+                Screw Systems <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-screw">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Trauma Producs/Screw System Instrument Set.jpg" alt="Screw System Instrument Set" loading="lazy"></div><div class="product-title">Screw System — Instrument Set</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Trauma Producs/Screw System Clinical.jpg" alt="Screw System Clinical Application" loading="lazy"></div><div class="product-title">Screw System — Clinical Application</div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nailing Systems -->
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-nail">
+                Nailing Systems <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-nail">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Trauma Producs/Nailing System X-Perts.png" alt="Nailing System X-Perts Humeral Nail" loading="lazy"></div><div class="product-title">Nailing System X-Perts Humeral Nail</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Trauma Producs/Nailing System Gamma.jpg" alt="Nailing System Gamma Intramedullary Nail II (PFNA)" loading="lazy"></div><div class="product-title">Nailing System Gamma Intramedullary Nail II (PFNA)</div></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── Arthroplasty ── -->
+        <div class="accordion" id="acc-arthro-wrap">
+          <button class="accordion-header" aria-expanded="false" aria-controls="acc-arthro">
+            <span class="accordion-header-left">
+              <span class="acc-icon">🦿</span>
+              Joint Reconstruction (Arthroplasty)
+            </span>
+            <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="accordion-content" id="acc-arthro">
+
+            <!-- Hip -->
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-hip">
+                Hip Arthroplasty <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-hip">
+                <div class="products-grid">
+                  <div class="product-card">
+                    <div class="product-img-placeholder">
+                      <svg viewBox="0 0 120 120" width="120" height="120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="58" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/><ellipse cx="60" cy="48" rx="20" ry="20" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/><rect x="53" y="66" width="14" height="30" rx="7" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/><text x="60" y="112" text-anchor="middle" font-size="9" fill="#3b82f6" font-family="Inter,sans-serif">HIP</text></svg>
+                    </div>
+                    <div class="product-title">Cementless / Cemented Hemi Arthroplasty (Standard &amp; Long Stem)</div>
+                  </div>
+                  <div class="product-card">
+                    <div class="product-img-placeholder">
+                      <svg viewBox="0 0 120 120" width="120" height="120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="58" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/><ellipse cx="60" cy="44" rx="22" ry="22" fill="#bbf7d0" stroke="#22c55e" stroke-width="2" opacity="0.7"/><ellipse cx="60" cy="44" rx="12" ry="12" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/><rect x="53" y="64" width="14" height="34" rx="7" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/><text x="60" y="113" text-anchor="middle" font-size="9" fill="#16a34a" font-family="Inter,sans-serif">THR</text></svg>
+                    </div>
+                    <div class="product-title">Cementless / Cemented Total Hip Replacement</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Knee -->
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-knee">
+                Knee Arthroplasty <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-knee">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Arthroplasty Product/Total Knee Replacement.jpg" alt="Total Knee Replacement" loading="lazy"></div><div class="product-title">Total Knee Replacement</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Arthroplasty Product/Unicompartmental Knee Replacement.jpg" alt="Unicompartmental Knee Replacement" loading="lazy"></div><div class="product-title">Unicompartmental Knee Replacement</div></div>
+                  <div class="product-card">
+                    <div class="product-img-placeholder">
+                      <svg viewBox="0 0 120 120" width="120" height="120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="58" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/><rect x="36" y="28" width="48" height="16" rx="8" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/><rect x="42" y="42" width="36" height="26" rx="4" fill="#bbf7d0" stroke="#22c55e" stroke-width="2"/><rect x="36" y="66" width="48" height="16" rx="8" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/><text x="60" y="102" text-anchor="middle" font-size="8" fill="#3b82f6" font-family="Inter,sans-serif">KNEE REVISION</text></svg>
+                    </div>
+                    <div class="product-title">Knee Revision</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── Future Products ── -->
+        <div class="accordion future">
+          <button class="accordion-header" aria-expanded="false" aria-controls="acc-future">
+            <span class="accordion-header-left">
+              <span class="acc-icon">🔬</span>
+              Future Products
+            </span>
+            <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="accordion-content" id="acc-future">
+
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-future-joint">
+                Joint Reconstruction Implants <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-future-joint">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Future Products/Tibial Baseplate.png" alt="Tibial Baseplate" loading="lazy"></div><div class="product-title">Tibial Baseplate</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Future Products/Acetabular Cup.png" alt="Acetabular Cup" loading="lazy"></div><div class="product-title">Acetabular Cup</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-future-spine">
+                Spine Implants <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-future-spine">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Future Products/Spine PEEK Cage.png" alt="Spine PEEK Cage" loading="lazy"></div><div class="product-title">Spine PEEK Cage</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Future Products/TLIF Expandable Cage.png" alt="TLIF Expandable Cage" loading="lazy"></div><div class="product-title">TLIF Expandable Cage</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Future Products/Spinal Needle.png" alt="Spinal Needle / Trocar" loading="lazy"></div><div class="product-title">Spinal Needle / Trocar</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-accordion">
+              <button class="sub-accordion-header" aria-expanded="false" aria-controls="sub-future-arthro">
+                Arthroscopy System <span class="sub-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="sub-accordion-content" id="sub-future-arthro">
+                <div class="products-grid">
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Future Products/Arthroscopy RF Probe System.png" alt="Arthroscopy RF Probe System" loading="lazy"></div><div class="product-title">Arthroscopy RF Probe System (11 tip variants)</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Future Products/RF Generator.png" alt="RF Generator Intens" loading="lazy"></div><div class="product-title">RF Generator (Intens)</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Future Products/ACS Electrosurgical Unit.png" alt="ACS 400 Electrosurgical Unit" loading="lazy"></div><div class="product-title">ACS 400 Electrosurgical Unit</div></div>
+                  <div class="product-card"><div class="product-img-wrap"><img src="../ACM/Products/Future Products/Arthroscopy Tower.png" alt="Full Arthroscopy Tower System" loading="lazy"></div><div class="product-title">Full Arthroscopy Tower System</div></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-logo">
+            <img src="../ACM/company Logo/Adhira Medika Strategic Logo.png" alt="Adhira Medika Logo">
+            <span>Adhira Medika</span>
+          </a>
+          <p>Indonesia's leading orthopaedic implant specialist — delivering precision surgical solutions to 181+ hospitals nationwide.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="products.html">Spine Surgery</a></li>
+            <li><a href="products.html">Trauma &amp; Fracture</a></li>
+            <li><a href="products.html">Arthroplasty</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@adhiramedika.com">info@adhiramedika.com</a></li>
+            <li><a href="tel:+62000000000">+62 XXX XXX XXX</a></li>
+            <li>Ruko Paramount Spark Blok B No.17 &amp; 22, Gading Serpong, Tangerang</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Adhira Medika Strategic Venture. All rights reserved.</p>
+        <p>For Healthcare Professionals only. Consult local representative for product IFU.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animate.js"></script>
+</body>
+</html>

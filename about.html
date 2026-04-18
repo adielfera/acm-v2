@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self';">
+  <meta name="description" content="About Adhira Medika Strategic Venture — our story, founder, vision, partners, and leadership team.">
+  <title>About — Adhira Medika Strategic Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    /* ── Tab Nav ── */
+    .tab-nav { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-bottom: var(--s-8); }
+    .tab-nav button {
+      background: var(--gray-100); border: 1.5px solid var(--gray-200);
+      color: var(--gray-700); padding: 9px 20px; border-radius: var(--r-full);
+      font-family: var(--font); font-weight: 600; font-size: 0.875rem;
+      cursor: pointer; transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast);
+      touch-action: manipulation;
+    }
+    .tab-nav button:hover { background: var(--gray-200); border-color: var(--gray-300); color: var(--gray-900); }
+    .tab-nav button.active { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: var(--sh-blue); }
+    .tab-nav button:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: tabIn 0.2s ease; }
+    @keyframes tabIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+    /* ── Content panel ── */
+    .about-panel { background: #fff; border-radius: var(--r-xl); box-shadow: var(--sh-card); border: 1px solid var(--gray-200); padding: var(--s-10) var(--s-10); }
+    @media (max-width: 600px) { .about-panel { padding: var(--s-6); } }
+
+    /* ── Company Cards ── */
+    .company-card {
+      display: flex; gap: var(--s-8); align-items: flex-start;
+      background: var(--gray-50); border-radius: var(--r-lg);
+      border: 1px solid var(--gray-200); padding: var(--s-8); margin-bottom: var(--s-6);
+    }
+    .company-card-img img { width: 90px; height: 90px; border-radius: var(--r-lg); object-fit: contain; background: #fff; padding: 8px; box-shadow: var(--sh-sm); flex-shrink: 0; }
+    .company-card-text h3 { font-size: 1.05rem; font-weight: 700; color: var(--gray-900); margin-bottom: var(--s-4); }
+    .company-card-text p { font-size: 0.875rem; color: var(--gray-600, #4b5563); line-height: 1.6; margin-bottom: var(--s-2); }
+    .company-card-text p strong { color: var(--gray-900); }
+    .company-accent { border-left: 3px solid var(--primary); }
+    .company-accent-green { border-left: 3px solid var(--emerald); }
+    @media (max-width: 600px) { .company-card { flex-direction: column; } }
+
+    /* ── Founder ── */
+    .founder-layout { display: grid; grid-template-columns: 240px 1fr; gap: var(--s-10); align-items: start; }
+    .founder-img img { width: 100%; border-radius: var(--r-xl); box-shadow: var(--sh-lg); }
+    .founder-name { font-size: 1.2rem; font-weight: 800; color: var(--gray-900); margin-bottom: var(--s-2); }
+    .founder-role { display: inline-block; background: rgba(0,102,255,.08); color: var(--primary); font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: var(--r-full); margin-bottom: var(--s-5); letter-spacing: 0.03em; }
+    .founder-bio p { font-size: 0.925rem; color: var(--gray-600, #4b5563); line-height: 1.8; margin-bottom: var(--s-4); }
+    @media (max-width: 700px) { .founder-layout { grid-template-columns: 1fr; } .founder-img img { max-width: 200px; } }
+
+    /* ── Vision & Mission ── */
+    .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); }
+    .vm-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--r-lg); padding: var(--s-8); }
+    .vm-card h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: var(--s-4); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.825rem; }
+    .vm-card p, .vm-card li { font-size: 0.9rem; color: var(--gray-700); line-height: 1.75; }
+    .vm-card ol { padding-left: var(--s-5); margin: 0; }
+    .vm-card ol li { margin-bottom: var(--s-3); }
+    .vm-original { margin-top: var(--s-5); padding-top: var(--s-4); border-top: 1px solid var(--gray-200); font-style: italic; font-size: 0.85rem; color: var(--gray-500); }
+    @media (max-width: 700px) { .vm-grid { grid-template-columns: 1fr; } }
+
+    /* ── Partners ── */
+    .partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--s-5); }
+    .partner-card {
+      background: #fff; border: 1px solid var(--gray-200); border-radius: var(--r-lg);
+      padding: var(--s-6) var(--s-4); text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: var(--s-3);
+      transition: box-shadow var(--t-base), transform var(--t-base), border-color var(--t-base);
+    }
+    @media (hover:hover) { .partner-card:hover { box-shadow: var(--sh-lg); transform: translateY(-3px); border-color: var(--primary); } }
+    .partner-card img { max-width: 100px; max-height: 60px; object-fit: contain; }
+    .partner-card p { font-size: 0.8rem; color: var(--gray-500); line-height: 1.5; }
+
+    /* ── Network ── */
+    .network-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: var(--s-3); }
+    .network-chip {
+      background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--r-md);
+      padding: 12px 16px; font-weight: 600; color: var(--gray-900);
+      font-size: 0.875rem; display: flex; align-items: center; gap: var(--s-3);
+      transition: border-color var(--t-fast), box-shadow var(--t-fast);
+    }
+    @media (hover:hover) { .network-chip:hover { border-color: var(--primary); box-shadow: var(--sh-sm); } }
+    .network-chip::before { content: '🏥'; font-size: 1rem; flex-shrink: 0; }
+
+    /* ── Team ── */
+    .team-section { margin-bottom: var(--s-10); }
+    .team-section-header { display: flex; align-items: center; gap: var(--s-4); margin-bottom: var(--s-2); }
+    .team-section-logo { width: 40px; height: 40px; border-radius: var(--r-full); object-fit: contain; background: #fff; border: 1px solid var(--gray-200); padding: 4px; box-shadow: var(--sh-sm); }
+    .team-section-title { font-size: 1rem; font-weight: 700; color: var(--gray-900); }
+    .team-section-sub { font-size: 0.8rem; color: var(--gray-500); margin: 4px 0 var(--s-6) 56px; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: var(--s-5); }
+    .team-card {
+      background: #fff; border: 1px solid var(--gray-200); border-radius: var(--r-xl);
+      padding: var(--s-8) var(--s-4) var(--s-6); display: flex; flex-direction: column;
+      align-items: center; text-align: center; position: relative; overflow: hidden;
+      transition: box-shadow var(--t-base), transform var(--t-base);
+    }
+    .team-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .team-card.role-commissioner::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .team-card.role-president::before { background: linear-gradient(90deg, var(--primary), var(--emerald)); }
+    .team-card.role-director::before { background: linear-gradient(90deg, #0284c7, #38bdf8); }
+    @media (hover:hover) { .team-card:hover { box-shadow: var(--sh-lg); transform: translateY(-4px); } }
+    .team-avatar { width: 72px; height: 72px; border-radius: var(--r-full); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; font-weight: 900; margin-bottom: var(--s-4); }
+    .avatar-commissioner { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; }
+    .avatar-president { background: linear-gradient(135deg, rgba(0,102,255,.12), rgba(0,184,107,.12)); color: var(--primary); }
+    .avatar-director { background: linear-gradient(135deg, #e0f2fe, #bae6fd); color: #0369a1; }
+    .team-card-name { font-size: 0.9rem; font-weight: 700; color: var(--gray-900); margin-bottom: var(--s-2); line-height: 1.3; }
+    .role-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: var(--r-full); margin-bottom: var(--s-2); letter-spacing: 0.03em; }
+    .badge-commissioner { background: #fef3c7; color: #92400e; }
+    .badge-president { background: rgba(0,102,255,.1); color: var(--primary); }
+    .badge-director { background: #e0f2fe; color: #0369a1; }
+    .team-company { font-size: 0.75rem; color: var(--gray-500); }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Nav -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Adhira Medika home">
+        <img src="../ACM/company Logo/Adhira Medika Strategic Logo.png" alt="Adhira Medika Strategic Logo">
+        <div>
+          <span class="nav-logo-name">Adhira Medika</span>
+          <span class="nav-logo-sub">Strategic Venture</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <nav class="main-nav" id="nav-menu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active" aria-current="page">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-hero-badge">Est. 2018 · Gading Serpong, Tangerang</div>
+        <h1>About Our Companies</h1>
+        <p>Dedicated to advancing orthopaedic care throughout Indonesia — connecting surgeons with the world's best implant technology since 2018.</p>
+      </div>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <section class="section">
+      <div class="container">
+
+        <!-- Tab Nav -->
+        <nav class="tab-nav" aria-label="About sections" role="tablist">
+          <button class="active" role="tab" aria-selected="true" aria-controls="tab-story" data-tab="story" id="btn-story">Our Story</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-founder" data-tab="founder" id="btn-founder">Founder</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-vision" data-tab="vision" id="btn-vision">Vision &amp; Mission</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-partners" data-tab="partners" id="btn-partners">Partners</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-network" data-tab="network" id="btn-network">Network</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-team" data-tab="team" id="btn-team">Our Team</button>
+        </nav>
+
+        <div class="about-panel">
+
+          <!-- Story -->
+          <div class="tab-content active" id="tab-story" role="tabpanel" aria-labelledby="btn-story">
+            <p class="section-label">Our Story</p>
+            <h2 class="section-title" style="margin-bottom: var(--s-6);">Two Companies. One Mission.</h2>
+            <p style="font-size:0.95rem; color:var(--gray-500); max-width:60ch; line-height:1.75; margin-bottom:var(--s-8);">Adhira Medika Strategic Venture operates through two complementary entities — AMPI and ACM — serving hospitals across Indonesia with precision orthopaedic solutions.</p>
+            <div class="company-card company-accent">
+              <div class="company-card-img">
+                <img src="../ACM/company Logo/Adhira Medika.jpeg" alt="PT. Adhira Medika Persada Internasional" loading="lazy">
+              </div>
+              <div class="company-card-text">
+                <h3>PT. Adhira Medika Persada Internasional (AMPI)</h3>
+                <p><strong>Founded:</strong> February 2018 &nbsp;·&nbsp; <strong>Sales started:</strong> May 2019</p>
+                <p><strong>Team:</strong> 42 staff members</p>
+                <p><strong>Serves:</strong> 42 Government Hospitals, 55 Private Hospitals</p>
+                <p><strong>Operations:</strong> ~400 cases per month</p>
+                <p><strong>Location:</strong> Ruko Paramount Spark Blok B No.17, Gading Serpong, Tangerang</p>
+              </div>
+            </div>
+            <div class="company-card company-accent-green">
+              <div class="company-card-img">
+                <img src="../ACM/company Logo/Adhira Cipta Medika.jpeg" alt="PT. Adhira Cipta Medika" loading="lazy">
+              </div>
+              <div class="company-card-text">
+                <h3>PT. Adhira Cipta Medika (ACM)</h3>
+                <p><strong>Established:</strong> November 2022 &nbsp;·&nbsp; <strong>Sales started:</strong> March 2023</p>
+                <p><strong>Team:</strong> 8 staff members</p>
+                <p><strong>Serves:</strong> 23 Government Hospitals, 29 Private Hospitals</p>
+                <p><strong>Operations:</strong> ~50 cases per month</p>
+                <p><strong>Location:</strong> Ruko Paramount Spark Blok B No.22, Gading Serpong, Tangerang</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Founder -->
+          <div class="tab-content" id="tab-founder" role="tabpanel" aria-labelledby="btn-founder">
+            <p class="section-label">Founder</p>
+            <h2 class="section-title" style="margin-bottom: var(--s-8);">A Surgeon Who Built a Movement</h2>
+            <div class="founder-layout">
+              <div class="founder-img">
+                <img src="../ACM/Others/Founder.png" alt="dr. Rizal Irvan Shiddieqy Pohan, SpOT (K)-Spine" loading="lazy">
+              </div>
+              <div class="founder-bio">
+                <h3 class="founder-name">dr. Rizal Irvan Shiddieqy Pohan, SpOT (K)-Spine</h3>
+                <span class="founder-role">Founder &amp; President Director — AMPI &amp; ACM</span>
+                <p>Dr. Rizal Irvan Shiddieqy Pohan is a distinguished orthopaedic surgeon and spine specialist with over 30 years of experience in Indonesia's healthcare landscape. Renowned for his clinical expertise and leadership, he has been a transformative force in advancing orthopaedic care nationwide.</p>
+                <p>He served as Past President of PABOI (2012–2014), is an active Spine Consultant, and mentors the next generation of spine surgeons across Indonesia. As a National Board Examiner for PABOI, Dr. Rizal upholds the highest standards in medical education and practice.</p>
+                <p>Dr. Rizal practices at RS Mayapada and RS Bethsaida, known for his patient-centered approach and innovative surgical techniques. He founded PMN Company in 2013, then established the Adhira group in 2018 — driven by a vision to democratize access to high-quality orthopaedic implants throughout Indonesia.</p>
+                <p>Today, the Adhira group serves 181+ hospitals, supporting over 450 surgical procedures monthly — a direct reflection of his lifelong mission to improve patient outcomes nationwide.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vision & Mission -->
+          <div class="tab-content" id="tab-vision" role="tabpanel" aria-labelledby="btn-vision">
+            <p class="section-label">Vision &amp; Mission</p>
+            <h2 class="section-title" style="margin-bottom: var(--s-8);">What We Stand For</h2>
+            <div class="vm-grid">
+              <div class="vm-card">
+                <h3>Our Vision</h3>
+                <p>To comprehensively provide the needs for implants and medical instruments, especially for orthopaedic cases, throughout Indonesia — ensuring that every region has access to high-quality, complete, and reliable orthopaedic medical solutions, supporting the advancement of healthcare and improving patient outcomes nationwide.</p>
+                <p class="vm-original"><strong>Visi:</strong> Menyediakan Kebutuhan Implant dan instrument medis khususnya pada kasus Ortopedi di Seluruh Indonesia secara Paripurna.</p>
+              </div>
+              <div class="vm-card">
+                <h3>Our Mission</h3>
+                <ol>
+                  <li>Provide comprehensive services with the latest technology in orthopaedic implant products.</li>
+                  <li>Support education and training for doctors and nurses to ensure patient safety and the comfort of medical personnel.</li>
+                  <li>Maintain a strong commitment to the services required by hospitals and doctors, especially by ensuring the availability of implants.</li>
+                  <li>Offer high-quality implants at affordable prices, enabling doctors to serve patients in all types of hospitals.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partners -->
+          <div class="tab-content" id="tab-partners" role="tabpanel" aria-labelledby="btn-partners">
+            <p class="section-label">Brand Partners</p>
+            <h2 class="section-title" style="margin-bottom: var(--s-3);">6 Global Partners</h2>
+            <p style="font-size:0.9rem;color:var(--gray-500);margin-bottom:var(--s-8);">Exclusive and authorized distribution for world-class orthopaedic manufacturers.</p>
+            <div class="partners-grid">
+              <div class="partner-card">
+                <img src="../ACM/Partner Logo/Zener.png" alt="Zener" loading="lazy">
+                <p>Medical device innovation</p>
+              </div>
+              <div class="partner-card">
+                <img src="../ACM/Partner Logo/ZenMed.png" alt="ZENMED" loading="lazy">
+                <p>Surgical instrument design</p>
+              </div>
+              <div class="partner-card">
+                <img src="../ACM/Partner Logo/IT Medical.png" alt="ITI Medical" loading="lazy">
+                <p>Orthopaedic device expertise</p>
+              </div>
+              <div class="partner-card">
+                <img src="../ACM/Partner Logo/Elite BioMed.png" alt="Elite Biomed" loading="lazy">
+                <p>Premium biomedical products</p>
+              </div>
+              <div class="partner-card">
+                <img src="../ACM/Partner Logo/Ikey Medical.png" alt="iKey Medical" loading="lazy">
+                <p>Modern orthopaedic care instruments</p>
+              </div>
+              <div class="partner-card">
+                <img src="../ACM/Partner Logo/Wuyang.jpg" alt="Wuyang" loading="lazy">
+                <p>Minimally invasive surgery</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Network -->
+          <div class="tab-content" id="tab-network" role="tabpanel" aria-labelledby="btn-network">
+            <p class="section-label">Our Network</p>
+            <h2 class="section-title" style="margin-bottom: var(--s-3);">181+ Partner Hospitals</h2>
+            <p style="font-size:0.9rem;color:var(--gray-500);margin-bottom:var(--s-8);">Serving <strong>65 Government Hospitals</strong> and <strong>84 Private Hospitals</strong> across Indonesia, with key partnerships at the country's leading medical centers.</p>
+            <div class="network-grid">
+              <div class="network-chip">RSCM</div>
+              <div class="network-chip">RS Fatmawati</div>
+              <div class="network-chip">RS Santosa Bandung</div>
+              <div class="network-chip">RS Hasan Sadikin</div>
+              <div class="network-chip">RSUD Tangerang</div>
+              <div class="network-chip">RS EMC Group</div>
+              <div class="network-chip">RS Moewardi</div>
+              <div class="network-chip">RSSA Malang</div>
+              <div class="network-chip">RS Mayapada Group</div>
+              <div class="network-chip">RS Primaya Group</div>
+              <div class="network-chip">RS Eka Group</div>
+            </div>
+          </div>
+
+          <!-- Team -->
+          <div class="tab-content" id="tab-team" role="tabpanel" aria-labelledby="btn-team">
+            <p class="section-label">Leadership</p>
+            <h2 class="section-title" style="margin-bottom: var(--s-3);">Meet Our Team</h2>
+            <p style="font-size:0.9rem;color:var(--gray-500);margin-bottom:var(--s-8);max-width:56ch;line-height:1.7;">Strong leadership drives our mission. The Board and Directors who guide both Adhira companies, shaping orthopaedic care across Indonesia.</p>
+
+            <!-- AMPI -->
+            <div class="team-section">
+              <div class="team-section-header">
+                <img src="../ACM/company Logo/Adhira Medika.jpeg" alt="AMPI" class="team-section-logo" loading="lazy">
+                <h3 class="team-section-title">PT. Adhira Medika Persada Internasional <span style="font-weight:500;color:var(--gray-400);font-size:0.85em;">(AMPI)</span></h3>
+              </div>
+              <p class="team-section-sub">Board &amp; Directors — Est. 2018</p>
+              <div class="team-grid">
+                <div class="team-card role-commissioner">
+                  <div class="team-avatar avatar-commissioner">N</div>
+                  <div class="team-card-name">Nurhadi, M.Sc.</div>
+                  <span class="role-badge badge-commissioner">Commissioner</span>
+                  <div class="team-company">AMPI</div>
+                </div>
+                <div class="team-card role-president">
+                  <div class="team-avatar avatar-president">R</div>
+                  <div class="team-card-name">Rizal Irvan Shiddieqy Pohan</div>
+                  <span class="role-badge badge-president">President Director</span>
+                  <div class="team-company">AMPI &amp; ACM</div>
+                </div>
+                <div class="team-card role-director">
+                  <div class="team-avatar avatar-director">A</div>
+                  <div class="team-card-name">Aldi Sjachri Fauzi</div>
+                  <span class="role-badge badge-director">Director 1</span>
+                  <div class="team-company">AMPI</div>
+                </div>
+                <div class="team-card role-director">
+                  <div class="team-avatar avatar-director">F</div>
+                  <div class="team-card-name">Fransisca</div>
+                  <span class="role-badge badge-director">Director 2</span>
+                  <div class="team-company">AMPI &amp; ACM</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ACM -->
+            <div class="team-section">
+              <div class="team-section-header">
+                <img src="../ACM/company Logo/Adhira Cipta Medika.jpeg" alt="ACM" class="team-section-logo" loading="lazy">
+                <h3 class="team-section-title">PT. Adhira Cipta Medika <span style="font-weight:500;color:var(--gray-400);font-size:0.85em;">(ACM)</span></h3>
+              </div>
+              <p class="team-section-sub">Board &amp; Directors — Est. 2022</p>
+              <div class="team-grid">
+                <div class="team-card role-commissioner">
+                  <div class="team-avatar avatar-commissioner">H</div>
+                  <div class="team-card-name">Harmandya Mahadipta</div>
+                  <span class="role-badge badge-commissioner">Commissioner</span>
+                  <div class="team-company">ACM</div>
+                </div>
+                <div class="team-card role-president">
+                  <div class="team-avatar avatar-president">R</div>
+                  <div class="team-card-name">Rizal Irvan Shiddieqy Pohan</div>
+                  <span class="role-badge badge-president">President Director</span>
+                  <div class="team-company">AMPI &amp; ACM</div>
+                </div>
+                <div class="team-card role-director">
+                  <div class="team-avatar avatar-director">H</div>
+                  <div class="team-card-name">Herwindo Ridwan</div>
+                  <span class="role-badge badge-director">Director 1</span>
+                  <div class="team-company">ACM</div>
+                </div>
+                <div class="team-card role-director">
+                  <div class="team-avatar avatar-director">F</div>
+                  <div class="team-card-name">Fransisca</div>
+                  <span class="role-badge badge-director">Director 2</span>
+                  <div class="team-company">AMPI &amp; ACM</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div><!-- /.about-panel -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-logo">
+            <img src="../ACM/company Logo/Adhira Medika Strategic Logo.png" alt="Adhira Medika Logo">
+            <span>Adhira Medika</span>
+          </a>
+          <p>Indonesia's leading orthopaedic implant specialist — delivering precision surgical solutions to 181+ hospitals nationwide.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="products.html">Spine Surgery</a></li>
+            <li><a href="products.html">Trauma &amp; Fracture</a></li>
+            <li><a href="products.html">Arthroplasty</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@adhiramedika.com">info@adhiramedika.com</a></li>
+            <li><a href="tel:+62000000000">+62 XXX XXX XXX</a></li>
+            <li>Ruko Paramount Spark Blok B No.17 &amp; 22, Gading Serpong, Tangerang</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Adhira Medika Strategic Venture. All rights reserved.</p>
+        <p>For Healthcare Professionals only. Consult local representative for product IFU.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/about.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animate.js"></script>
+</body>
+</html>

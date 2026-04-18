@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self';">
+  <meta name="description" content="Adhira Medika Strategic Venture — Indonesia's leading orthopaedic implant distributor. Spine, trauma, and arthroplasty solutions for surgeons across 181+ hospitals.">
+  <title>Adhira Medika Strategic Venture — Orthopaedic Implant Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #0c1f3f 0%, #1a3158 55%, #0c2e1f 100%);
+      padding: var(--s-24) 0;
+      overflow: hidden; position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 18% 55%, rgba(0,102,255,.2) 0%, transparent 50%),
+        radial-gradient(circle at 82% 22%, rgba(0,184,107,.17) 0%, transparent 48%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.038) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--s-16); align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: var(--s-2);
+      background: rgba(0,184,107,.15); border: 1px solid rgba(0,184,107,.35);
+      color: #4ade80; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.05em; padding: 6px 14px; border-radius: var(--r-full);
+      margin-bottom: var(--s-5);
+    }
+    .hero-badge::before { content: '●'; font-size: 0.55em; }
+    .hero-h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 900; color: #fff;
+      letter-spacing: -0.03em; line-height: 1.09;
+      margin-bottom: var(--s-5);
+    }
+    .hero-h1 em { font-style: normal; color: #4ade80; }
+    .hero-sub {
+      font-size: 1.075rem; color: rgba(255,255,255,.7);
+      line-height: 1.75; max-width: 50ch; margin-bottom: var(--s-8);
+    }
+    .hero-actions { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+    .hero-stats {
+      display: flex; gap: var(--s-6); margin-top: var(--s-10);
+      padding-top: var(--s-8); border-top: 1px solid rgba(255,255,255,.1);
+      flex-wrap: wrap;
+    }
+    .hero-stat-num { display: block; font-size: 1.7rem; font-weight: 900; color: #fff; letter-spacing: -0.02em; line-height: 1; }
+    .hero-stat-label { font-size: 0.775rem; color: rgba(255,255,255,.5); margin-top: 4px; }
+    .hero-divider { width: 1px; background: rgba(255,255,255,.12); align-self: stretch; }
+    .hero-visual { display: flex; align-items: center; justify-content: flex-end; }
+    .hero-img-wrap {
+      border-radius: var(--r-2xl); overflow: hidden;
+      box-shadow: 0 32px 64px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.08);
+      max-width: 480px; width: 100%;
+    }
+    .hero-img-wrap img { width: 100%; display: block; }
+
+    /* ── Trust Bar ── */
+    .trust-bar { padding: var(--s-6) 0; border-bottom: 1px solid var(--gray-200); }
+    .trust-bar-inner { display: flex; align-items: center; gap: var(--s-5); flex-wrap: wrap; }
+    .trust-label { font-size: 0.775rem; font-weight: 600; color: var(--gray-400); letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+    .trust-chips { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+    .trust-chip { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--r-full); padding: 5px 13px; font-size: 0.8rem; font-weight: 500; color: var(--gray-700); }
+
+    /* ── Stats ── */
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); }
+    .stat-card {
+      background: #fff; border: 1px solid var(--gray-200); border-radius: var(--r-lg);
+      padding: var(--s-8) var(--s-6); text-align: center;
+      transition: box-shadow var(--t-base), transform var(--t-base), border-color var(--t-base);
+    }
+    @media (hover:hover) { .stat-card:hover { box-shadow: var(--sh-lg); transform: translateY(-3px); border-color: var(--primary); } }
+    .stat-num { display: block; font-size: 2.4rem; font-weight: 900; color: var(--primary); letter-spacing: -0.03em; line-height: 1; margin-bottom: var(--s-2); }
+    .stat-label { font-size: 0.85rem; color: var(--gray-500); font-weight: 500; }
+
+    /* ── Solutions ── */
+    .solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
+    .solution-card {
+      background: #fff; border: 1px solid var(--gray-200); border-radius: var(--r-xl);
+      padding: var(--s-8); display: flex; flex-direction: column;
+      transition: box-shadow var(--t-base), transform var(--t-base), border-color var(--t-base);
+    }
+    @media (hover:hover) { .solution-card:hover { box-shadow: var(--sh-lg); transform: translateY(-4px); border-color: var(--primary); } }
+    .solution-icon { width: 50px; height: 50px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: var(--s-5); }
+    .icon-blue { background: rgba(0,102,255,.1); }
+    .icon-green { background: rgba(0,184,107,.1); }
+    .icon-purple { background: rgba(124,58,237,.1); }
+    .solution-title { font-size: 1.1rem; font-weight: 700; color: var(--gray-900); margin-bottom: var(--s-3); }
+    .solution-desc { font-size: 0.875rem; color: var(--gray-500); line-height: 1.7; flex: 1; margin-bottom: var(--s-5); }
+    .solution-link { display: inline-flex; align-items: center; gap: var(--s-2); font-size: 0.875rem; font-weight: 600; color: var(--primary); text-decoration: none; }
+    .solution-link-arrow { transition: transform var(--t-fast); }
+    .solution-link:hover .solution-link-arrow { transform: translateX(4px); }
+
+    /* ── Why ACM ── */
+    .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-16); align-items: center; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); }
+    .why-item { display: flex; gap: var(--s-4); }
+    .why-icon { flex-shrink: 0; width: 44px; height: 44px; background: rgba(0,102,255,.08); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .why-title { font-size: 0.975rem; font-weight: 700; color: var(--gray-900); margin-bottom: var(--s-2); }
+    .why-desc { font-size: 0.85rem; color: var(--gray-500); line-height: 1.7; }
+
+    /* ── Testimonials ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
+    .testi-card { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--r-xl); padding: var(--s-7, 1.75rem); }
+    .testi-stars { color: #f59e0b; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: var(--s-4); }
+    .testi-quote { font-size: 0.925rem; color: var(--gray-700); line-height: 1.75; margin-bottom: var(--s-5); font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: var(--s-3); }
+    .testi-avatar { width: 38px; height: 38px; border-radius: var(--r-full); background: linear-gradient(135deg, var(--primary), var(--emerald)); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .testi-name { font-size: 0.85rem; font-weight: 700; color: var(--gray-900); }
+    .testi-role { font-size: 0.775rem; color: var(--gray-500); }
+
+    /* ── CTA Banner ── */
+    .cta-banner {
+      background: linear-gradient(135deg, #0c1f3f 0%, #0f2d4f 55%, #0a2a1c 100%);
+      border-radius: var(--r-2xl); padding: var(--s-16) var(--s-12);
+      margin: 0 0 var(--s-24) 0; position: relative; overflow: hidden; text-align: center;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 30% 50%, rgba(0,102,255,.22) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(0,184,107,.17) 0%, transparent 48%);
+      pointer-events: none;
+    }
+    .cta-banner-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+    .cta-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: var(--s-3); }
+    .cta-sub { font-size: 1rem; color: rgba(255,255,255,.65); line-height: 1.75; margin-bottom: var(--s-8); }
+    .cta-actions { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .solutions-grid { grid-template-columns: 1fr 1fr; }
+      .why-layout { grid-template-columns: 1fr; gap: var(--s-10); }
+      .cta-banner { padding: var(--s-12) var(--s-6); border-radius: var(--r-xl); }
+    }
+    @media (max-width: 600px) {
+      .solutions-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: var(--s-4); }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Nav -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Adhira Medika home">
+        <img src="../ACM/company Logo/Adhira Medika Strategic Logo.png" alt="Adhira Medika Strategic Logo">
+        <div>
+          <span class="nav-logo-name">Adhira Medika</span>
+          <span class="nav-logo-sub">Strategic Venture</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <nav class="main-nav" id="nav-menu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero" aria-label="Welcome">
+      <div class="container">
+        <div class="hero-inner">
+          <div>
+            <div class="hero-badge">Indonesia's Orthopaedic Specialist</div>
+            <h1 class="hero-h1">Precision<br>Orthopaedic<br><em>Solutions</em><br>for Surgeons</h1>
+            <p class="hero-sub">Empowering Indonesia's surgeons with world-class spine, trauma, and arthroplasty implants — backed by 42 clinical specialists and nationwide logistics.</p>
+            <div class="hero-actions">
+              <a href="products.html" class="btn btn-primary btn-lg">Explore Products</a>
+              <a href="contact.html" class="btn btn-outline btn-lg">Contact a Specialist</a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <span class="hero-stat-num">181+</span>
+                <div class="hero-stat-label">Partner Hospitals</div>
+              </div>
+              <div class="hero-divider"></div>
+              <div>
+                <span class="hero-stat-num">450+</span>
+                <div class="hero-stat-label">Procedures / Month</div>
+              </div>
+              <div class="hero-divider"></div>
+              <div>
+                <span class="hero-stat-num">42</span>
+                <div class="hero-stat-label">Clinical Specialists</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-img-wrap">
+              <img src="../ACM/Others/Othopedic Care.png" alt="Orthopaedic surgical care" loading="eager">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+      <div class="container">
+        <div class="trust-bar-inner">
+          <span class="trust-label">Trusted by</span>
+          <div class="trust-chips">
+            <span class="trust-chip">RSCM</span>
+            <span class="trust-chip">RS Fatmawati</span>
+            <span class="trust-chip">RS Santosa Bandung</span>
+            <span class="trust-chip">RS Hasan Sadikin</span>
+            <span class="trust-chip">RS Moewardi</span>
+            <span class="trust-chip">RS Mayapada Group</span>
+            <span class="trust-chip">RSSA Malang</span>
+            <span class="trust-chip">RS EMC Group</span>
+            <span class="trust-chip">+173 more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <section class="section section-muted" aria-label="Company statistics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card" data-reveal>
+            <span class="stat-num">42</span>
+            <span class="stat-label">Clinical Specialists (AMPI)</span>
+          </div>
+          <div class="stat-card" data-reveal data-delay="1">
+            <span class="stat-num">181+</span>
+            <span class="stat-label">Partner Hospitals Nationwide</span>
+          </div>
+          <div class="stat-card" data-reveal data-delay="2">
+            <span class="stat-num">450+</span>
+            <span class="stat-label">Surgical Procedures / Month</span>
+          </div>
+          <div class="stat-card" data-reveal data-delay="3">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Global Brand Partners</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solutions -->
+    <section class="section" aria-label="Product solutions">
+      <div class="container">
+        <p class="section-label" data-reveal>Our Solutions</p>
+        <h2 class="section-title" data-reveal>Complete Implant Portfolio</h2>
+        <p class="section-sub" data-reveal>From complex spinal reconstruction to trauma stabilization and joint replacement — the full spectrum of orthopaedic solutions under one partner.</p>
+        <div class="solutions-grid">
+          <div class="solution-card" data-reveal data-delay="1">
+            <div class="solution-icon icon-blue">🦴</div>
+            <h3 class="solution-title">Spine Surgery</h3>
+            <p class="solution-desc">Posterior and anterior approach systems including pedicle screws, interbody cages, and cervical plates. TKDN certified for streamlined hospital procurement.</p>
+            <a href="products.html" class="solution-link">View Spine Products <span class="solution-link-arrow">→</span></a>
+          </div>
+          <div class="solution-card" data-reveal data-delay="2">
+            <div class="solution-icon icon-green">🔩</div>
+            <h3 class="solution-title">Trauma &amp; Fracture</h3>
+            <p class="solution-desc">Complete trauma implant systems — locking plates, screw systems, and intramedullary nails for all major fracture types and anatomical regions.</p>
+            <a href="products.html" class="solution-link">View Trauma Products <span class="solution-link-arrow">→</span></a>
+          </div>
+          <div class="solution-card" data-reveal data-delay="3">
+            <div class="solution-icon icon-purple">🦿</div>
+            <h3 class="solution-title">Arthroplasty</h3>
+            <p class="solution-desc">Hip and knee replacement systems designed for long-term performance with comprehensive sizing to meet diverse patient anatomical requirements.</p>
+            <a href="products.html" class="solution-link">View Arthroplasty Products <span class="solution-link-arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why ACM -->
+    <section class="section section-muted" aria-label="Why choose ACM">
+      <div class="container">
+        <div class="why-layout">
+          <div>
+            <p class="section-label" data-reveal>Why Choose ACM</p>
+            <h2 class="section-title" data-reveal>The Partner<br>Surgeons Trust</h2>
+            <p class="section-sub" data-reveal style="margin-bottom: var(--s-8);">We combine global product quality with deep local expertise — delivering the right implants, at the right time, with clinical support at every step.</p>
+            <a href="about.html" class="btn btn-ghost" data-reveal>Learn About Us →</a>
+          </div>
+          <div class="why-grid" data-reveal>
+            <div class="why-item">
+              <div class="why-icon">🏆</div>
+              <div>
+                <h3 class="why-title">TKDN Certification</h3>
+                <p class="why-desc">Products meeting Indonesia's domestic content requirements — enabling faster procurement through government hospital channels.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">🩺</div>
+              <div>
+                <h3 class="why-title">Clinical Support</h3>
+                <p class="why-desc">42 trained specialists available for surgical assistance, training, and post-op support at all partner hospitals nationwide.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">🚀</div>
+              <div>
+                <h3 class="why-title">Nationwide Logistics</h3>
+                <p class="why-desc">Same-day and next-day delivery across Java, Sumatra, Kalimantan and beyond — no waiting for critical implants.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">🌐</div>
+              <div>
+                <h3 class="why-title">6 Global Brands</h3>
+                <p class="why-desc">Exclusive distribution for 6 international orthopaedic brands, bringing global innovation to Indonesia's operating rooms.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" aria-label="Testimonials">
+      <div class="container">
+        <p class="section-label text-center" data-reveal>Testimonials</p>
+        <h2 class="section-title text-center" data-reveal>Trusted Across Indonesia</h2>
+        <p class="section-sub text-center" data-reveal>What our orthopaedic surgeon partners say about working with ACM.</p>
+        <div class="testimonials-grid">
+          <div class="testi-card" data-reveal data-delay="1">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"The quality and reliability of ACM's spine implants has been consistently outstanding. Their clinical team is always present when needed — which makes a real difference in the OR."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">RS</div>
+              <div>
+                <div class="testi-name">Dr. R. Santoso, Sp.OT</div>
+                <div class="testi-role">Spine Surgeon · RSCM Jakarta</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card" data-reveal data-delay="2">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"Their trauma implant portfolio is one of the most complete I've worked with. Delivery is fast, instruments are always properly sterilized, and the support team is highly knowledgeable."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">WP</div>
+              <div>
+                <div class="testi-name">Dr. Wahyu P., Sp.OT(K)</div>
+                <div class="testi-role">Trauma Surgeon · RS Hasan Sadikin</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card" data-reveal data-delay="3">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote">"We've partnered with ACM for years. Their TKDN products have simplified our procurement and the clinical outcomes across all our joint replacement cases have been excellent."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">MF</div>
+              <div>
+                <div class="testi-name">Dr. M. Faisal, Sp.OT</div>
+                <div class="testi-role">Arthroplasty Surgeon · RS Santosa Bandung</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="section-sm" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-banner-inner">
+            <h2 class="cta-title">Ready to Partner with ACM?</h2>
+            <p class="cta-sub">Get in touch with our clinical sales team for product demonstrations, pricing, and procurement support for your hospital.</p>
+            <div class="cta-actions">
+              <a href="contact.html" class="btn btn-white btn-lg">Find a Sales Representative</a>
+              <a href="products.html" class="btn btn-outline btn-lg">Browse Products</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-logo">
+            <img src="../ACM/company Logo/Adhira Medika Strategic Logo.png" alt="Adhira Medika Logo">
+            <span>Adhira Medika</span>
+          </a>
+          <p>Indonesia's leading orthopaedic implant specialist — delivering precision surgical solutions to 181+ hospitals nationwide.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="products.html">Spine Surgery</a></li>
+            <li><a href="products.html">Trauma &amp; Fracture</a></li>
+            <li><a href="products.html">Arthroplasty</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@adhiramedika.com">info@adhiramedika.com</a></li>
+            <li><a href="tel:+62000000000">+62 XXX XXX XXX</a></li>
+            <li>Ruko Paramount Spark Blok B No.17 &amp; 22, Gading Serpong, Tangerang</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Adhira Medika Strategic Venture. All rights reserved.</p>
+        <p>For Healthcare Professionals only. Consult local representative for product IFU.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script src="js/animate.js"></script>
+</body>
+</html>

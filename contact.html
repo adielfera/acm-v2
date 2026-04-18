@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self';">
+  <meta name="description" content="Contact Adhira Medika Strategic Venture — get in touch for product inquiries, demonstrations, and clinical support.">
+  <title>Contact — Adhira Medika Strategic Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    /* ── Contact Layout ── */
+    .contact-layout {
+      display: grid; grid-template-columns: 1fr 1.5fr;
+      gap: var(--s-8); align-items: start;
+    }
+    @media (max-width: 860px) { .contact-layout { grid-template-columns: 1fr; } }
+
+    /* ── Info Cards ── */
+    .info-cards { display: flex; flex-direction: column; gap: var(--s-4); }
+    .info-card {
+      background: #fff; border: 1px solid var(--gray-200); border-radius: var(--r-xl);
+      padding: var(--s-5) var(--s-6);
+      display: flex; align-items: flex-start; gap: var(--s-4);
+      transition: box-shadow var(--t-base), border-color var(--t-base);
+    }
+    @media (hover:hover) { .info-card:hover { box-shadow: var(--sh-md); border-color: var(--primary); } }
+    .info-icon-wrap {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(0,102,255,.08); border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .info-card h4 { font-size: 0.825rem; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .info-card p, .info-card a { font-size: 0.9rem; color: var(--gray-600, #4b5563); line-height: 1.6; text-decoration: none; }
+    .info-card a:hover { color: var(--primary); text-decoration: underline; }
+
+    /* Office sub-cards */
+    .office-item { margin-bottom: var(--s-2); }
+    .office-item:last-child { margin-bottom: 0; }
+    .office-label { font-size: 0.775rem; font-weight: 700; color: var(--primary); margin-bottom: 2px; }
+    .office-addr { font-size: 0.85rem; color: var(--gray-500); line-height: 1.55; }
+
+    /* ── Form Card ── */
+    .form-card {
+      background: #fff; border: 1px solid var(--gray-200);
+      border-radius: var(--r-2xl); padding: var(--s-10);
+    }
+    @media (max-width: 600px) { .form-card { padding: var(--s-6); border-radius: var(--r-xl); } }
+    .form-card h2 { font-size: 1.4rem; font-weight: 800; color: var(--gray-900); margin-bottom: var(--s-2); letter-spacing: -0.02em; }
+    .form-card > p { font-size: 0.9rem; color: var(--gray-500); margin-bottom: var(--s-8); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+    @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { margin-bottom: var(--s-5); }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--gray-900); margin-bottom: 6px; }
+    .required { color: #dc2626; margin-left: 2px; }
+    .form-input {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--gray-200); border-radius: var(--r-md);
+      font-family: var(--font); font-size: 0.9rem; color: var(--gray-900);
+      background: var(--gray-50);
+      transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+    }
+    .form-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,102,255,.12); background: #fff; }
+    textarea.form-input { resize: vertical; min-height: 130px; }
+    .form-submit {
+      width: 100%; padding: 14px;
+      background: var(--primary); color: #fff;
+      border: none; border-radius: var(--r-full);
+      font-family: var(--font); font-weight: 700; font-size: 1rem;
+      cursor: pointer; box-shadow: var(--sh-blue);
+      transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+      touch-action: manipulation; letter-spacing: 0.01em;
+    }
+    .form-submit:hover { background: var(--primary-h); transform: translateY(-1px); box-shadow: 0 12px 32px rgba(0,102,255,.35); }
+    .form-submit:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+    .form-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+    /* ── Map placeholder ── */
+    .map-placeholder {
+      margin-top: var(--s-16); border-radius: var(--r-xl);
+      overflow: hidden; border: 1px solid var(--gray-200);
+      background: var(--gray-100); height: 240px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: var(--s-2);
+      color: var(--gray-400); font-size: 0.875rem;
+    }
+    .map-placeholder-icon { font-size: 2rem; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Nav -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Adhira Medika home">
+        <img src="../ACM/company Logo/Adhira Medika Strategic Logo.png" alt="Adhira Medika Strategic Logo">
+        <div>
+          <span class="nav-logo-name">Adhira Medika</span>
+          <span class="nav-logo-sub">Strategic Venture</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <nav class="main-nav" id="nav-menu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html" class="active nav-cta" aria-current="page">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-hero-badge">Sales Support · Clinical Assistance · Procurement</div>
+        <h1>Get In Touch</h1>
+        <p>Our clinical sales team is ready to assist with product information, demonstrations, and procurement support for your hospital.</p>
+      </div>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <section class="section">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- Info column -->
+          <div class="info-cards" data-reveal>
+            <div class="info-card">
+              <div class="info-icon-wrap">📧</div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:info@adhiramedika.com">info@adhiramedika.com</a>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon-wrap">📞</div>
+              <div>
+                <h4>Phone</h4>
+                <a href="tel:+62000000000">+62 XXX XXX XXX</a>
+              </div>
+            </div>
+            <div class="info-card" style="flex-direction:column; gap: var(--s-4);">
+              <div style="display:flex; align-items:flex-start; gap:var(--s-4);">
+                <div class="info-icon-wrap">📍</div>
+                <h4 style="padding-top:10px;">Our Offices</h4>
+              </div>
+              <div class="office-item">
+                <div class="office-label">AMPI — PT. Adhira Medika Persada Internasional</div>
+                <div class="office-addr">Ruko Paramount Spark Blok B No.17, Gading Serpong, Tangerang - Banten</div>
+              </div>
+              <div class="office-item">
+                <div class="office-label" style="color:var(--emerald);">ACM — PT. Adhira Cipta Medika</div>
+                <div class="office-addr">Ruko Paramount Spark Blok B No.22, Gading Serpong, Tangerang - Banten</div>
+              </div>
+            </div>
+            <div class="map-placeholder" aria-label="Office location map placeholder">
+              <div class="map-placeholder-icon">🗺️</div>
+              <span>Gading Serpong, Tangerang</span>
+              <span style="font-size:0.775rem;">Paramount Spark Complex</span>
+            </div>
+          </div>
+
+          <!-- Form column -->
+          <div class="form-card" data-reveal data-delay="1">
+            <h2>Send Us a Message</h2>
+            <p>We typically respond within 1–2 business days. For urgent clinical support, call us directly.</p>
+            <form action="#" method="post" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-name">Full Name<span class="required" aria-hidden="true">*</span></label>
+                  <input id="contact-name" class="form-input" type="text" name="name" placeholder="Your full name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="contact-email">Email Address<span class="required" aria-hidden="true">*</span></label>
+                  <input id="contact-email" class="form-input" type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contact-hospital">Hospital / Institution</label>
+                <input id="contact-hospital" class="form-input" type="text" name="hospital" placeholder="Hospital or institution name" autocomplete="organization">
+              </div>
+              <div class="form-group">
+                <label for="contact-subject">Subject</label>
+                <input id="contact-subject" class="form-input" type="text" name="subject" placeholder="Product inquiry, demonstration request, etc.">
+              </div>
+              <div class="form-group">
+                <label for="contact-message">Message<span class="required" aria-hidden="true">*</span></label>
+                <textarea id="contact-message" class="form-input" name="message" rows="5" placeholder="Tell us more about your inquiry — product of interest, clinical application, hospital type..." required></textarea>
+              </div>
+              <button type="submit" class="form-submit">Send Message</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-logo">
+            <img src="../ACM/company Logo/Adhira Medika Strategic Logo.png" alt="Adhira Medika Logo">
+            <span>Adhira Medika</span>
+          </a>
+          <p>Indonesia's leading orthopaedic implant specialist — delivering precision surgical solutions to 181+ hospitals nationwide.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="products.html">Spine Surgery</a></li>
+            <li><a href="products.html">Trauma &amp; Fracture</a></li>
+            <li><a href="products.html">Arthroplasty</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@adhiramedika.com">info@adhiramedika.com</a></li>
+            <li><a href="tel:+62000000000">+62 XXX XXX XXX</a></li>
+            <li>Ruko Paramount Spark Blok B No.17 &amp; 22, Gading Serpong, Tangerang</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Adhira Medika Strategic Venture. All rights reserved.</p>
+        <p>For Healthcare Professionals only. Consult local representative for product IFU.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/contact.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animate.js"></script>
+</body>
+</html>
