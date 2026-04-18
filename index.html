@@ -13,14 +13,14 @@
   <style>
     /* ── Hero ── */
     .hero {
-      background: linear-gradient(135deg, #0c1f3f 0%, #1a3158 55%, #0c2e1f 100%);
+      background: linear-gradient(135deg, #1C2D3E 0%, #1A3A5C 55%, #2A1E0C 100%);
       padding: var(--s-24) 0;
       overflow: hidden; position: relative;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(circle at 18% 55%, rgba(0,102,255,.2) 0%, transparent 50%),
-        radial-gradient(circle at 82% 22%, rgba(0,184,107,.17) 0%, transparent 48%);
+      background-image: radial-gradient(circle at 18% 55%, rgba(30,136,229,.2) 0%, transparent 50%),
+        radial-gradient(circle at 82% 22%, rgba(200,147,58,.18) 0%, transparent 48%);
       pointer-events: none;
     }
     .hero::after {
@@ -35,8 +35,8 @@
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: var(--s-2);
-      background: rgba(0,184,107,.15); border: 1px solid rgba(0,184,107,.35);
-      color: #4ade80; font-size: 0.78rem; font-weight: 700;
+      background: rgba(200,147,58,.15); border: 1px solid rgba(200,147,58,.35);
+      color: #C8933A; font-size: 0.78rem; font-weight: 700;
       letter-spacing: 0.05em; padding: 6px 14px; border-radius: var(--r-full);
       margin-bottom: var(--s-5);
     }
@@ -47,7 +47,7 @@
       letter-spacing: -0.03em; line-height: 1.09;
       margin-bottom: var(--s-5);
     }
-    .hero-h1 em { font-style: normal; color: #4ade80; }
+    .hero-h1 em { font-style: normal; color: #C8933A; }
     .hero-sub {
       font-size: 1.075rem; color: rgba(255,255,255,.7);
       line-height: 1.75; max-width: 50ch; margin-bottom: var(--s-8);
@@ -96,8 +96,8 @@
     }
     @media (hover:hover) { .solution-card:hover { box-shadow: var(--sh-lg); transform: translateY(-4px); border-color: var(--primary); } }
     .solution-icon { width: 50px; height: 50px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: var(--s-5); }
-    .icon-blue { background: rgba(0,102,255,.1); }
-    .icon-green { background: rgba(0,184,107,.1); }
+    .icon-blue { background: rgba(30,136,229,.1); }
+    .icon-green { background: rgba(200,147,58,.1); }
     .icon-purple { background: rgba(124,58,237,.1); }
     .solution-title { font-size: 1.1rem; font-weight: 700; color: var(--gray-900); margin-bottom: var(--s-3); }
     .solution-desc { font-size: 0.875rem; color: var(--gray-500); line-height: 1.7; flex: 1; margin-bottom: var(--s-5); }
@@ -109,7 +109,7 @@
     .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-16); align-items: center; }
     .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); }
     .why-item { display: flex; gap: var(--s-4); }
-    .why-icon { flex-shrink: 0; width: 44px; height: 44px; background: rgba(0,102,255,.08); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .why-icon { flex-shrink: 0; width: 44px; height: 44px; background: rgba(30,136,229,.08); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
     .why-title { font-size: 0.975rem; font-weight: 700; color: var(--gray-900); margin-bottom: var(--s-2); }
     .why-desc { font-size: 0.85rem; color: var(--gray-500); line-height: 1.7; }
 
@@ -125,14 +125,14 @@
 
     /* ── CTA Banner ── */
     .cta-banner {
-      background: linear-gradient(135deg, #0c1f3f 0%, #0f2d4f 55%, #0a2a1c 100%);
+      background: linear-gradient(135deg, #1C2D3E 0%, #0F2D4F 55%, #2A1E0C 100%);
       border-radius: var(--r-2xl); padding: var(--s-16) var(--s-12);
       margin: 0 0 var(--s-24) 0; position: relative; overflow: hidden; text-align: center;
     }
     .cta-banner::before {
       content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(circle at 30% 50%, rgba(0,102,255,.22) 0%, transparent 50%),
-        radial-gradient(circle at 70% 50%, rgba(0,184,107,.17) 0%, transparent 48%);
+      background-image: radial-gradient(circle at 30% 50%, rgba(30,136,229,.22) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(200,147,58,.18) 0%, transparent 48%);
       pointer-events: none;
     }
     .cta-banner-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
